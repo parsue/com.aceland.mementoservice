@@ -1,0 +1,20 @@
+{
+    "name": "AceLand.MementoService.Editor",
+    "rootNamespace": "AceLand.MementoService",
+    "references": [
+        "GUID:0b6e3ff925df76b408774ed4b623807b",
+        "GUID:9811992f43a01034cbf814ec6fbeeb44",
+        "GUID:8828a24e019ee7a46a1bb24a690a4e0e"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
