@@ -21,9 +21,9 @@ namespace AceLand.MementoService
 
         internal static void Initialization()
         {
-            Debug.Log($"Memento Service Type : {Settings.MementoServiceType.ToName()}");
+            Debug.Log($"Memento Service Mode : {Settings.MementoServiceMode.ToName()}");
             
-            if (Settings.MementoServiceType is MementoServiceType.LocalOnly) return;
+            if (Settings.MementoServiceMode is MementoServiceMode.LocalOnly) return;
 
             _mementoServices = new Dictionary<Type, IMementoService>();
             Debug.Log($"Memento Background Service is Ready");

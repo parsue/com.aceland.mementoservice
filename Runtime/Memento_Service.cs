@@ -65,9 +65,9 @@ namespace AceLand.MementoService
 
         private static void CheckServiceLevel()
         {
-            if (Settings.MementoServiceType is not MementoServiceType.LocalOnly) return;
-            throw new Exception($"Memento Service Deny: Service Type is {Settings.MementoServiceType.ToName()}. " +
-                                $"Please change the Memento Service Type to {MementoServiceType.BackgroundAndLocal.ToName()}.");
+            if (Settings.MementoServiceMode is not MementoServiceMode.LocalOnly) return;
+            throw new Exception($"Memento Service Deny: Service Type is {Settings.MementoServiceMode.ToName()}. " +
+                                $"Please change the Memento Service Type to {MementoServiceMode.GlobalAndLocal.ToName()}.");
         }
     }
 }
