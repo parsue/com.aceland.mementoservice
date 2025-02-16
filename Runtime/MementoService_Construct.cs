@@ -1,12 +1,27 @@
 ﻿using AceLand.Library.Disposable;
+using AceLand.MementoService.Core;
+using UnityEngine;
 
 namespace AceLand.MementoService
 {
     public partial class MementoService<T> : DisposableObject
     {
-        private MementoService() { }
+        private MementoService()
+        {
+            _originator = new Originator<T>();
+            _caretaker = new Caretaker<T>(Settings.HistoryLimit);
+        }
 
-        internal static MementoService<T> Build() => new MementoService<T>();
+        private MementoService(int historyLimit)
+        {
+            var limit = Mathf.Max(historyLimit, 4);
+            _originator = new Originator<T>();
+            _caretaker = new Caretaker<T>(limit);
+        }
+
+        internal static MementoService<T> Build() => new();
+
+        internal static MementoService<T> Build(int historyLimit) => new(historyLimit);
         
         protected override void DisposeManagedResources()
         {

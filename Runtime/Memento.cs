@@ -31,5 +31,8 @@ namespace AceLand.MementoService
 
         public static MementoService<T> BuildLocalService<T>() =>
             MementoService<T>.Build();
+
+        public static MementoService<T> BuildLocalService<T>(int historyLimit) =>
+            MementoService<T>.Build(historyLimit);
     }
 }

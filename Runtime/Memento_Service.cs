@@ -36,23 +36,56 @@ namespace AceLand.MementoService
             
             service.SaveState(state);
         }
+
+        public static T Undo<T>()
+        {
+            CheckServiceLevel();
+            var t = typeof(T);
+            if (_mementoServices.TryGetValue(t, out var mementoService) &&
+                mementoService is IMementoService<T> service)
+            {
+                return service.Undo();
+            }
+            
+            throw new Exception($"No recovered Memento state for type {typeof(T).Name}. Please check UndoCount before Undo, or use TryUndo method.");
+        }
         
         public static bool TryUndo<T>(out T state)
         {
             CheckServiceLevel();
-            state = default;
             var t = typeof(T);
-            if (!_mementoServices.TryGetValue(t, out var mementoService)) return false;
-            return mementoService is IMementoService<T> service && service.TryUndo(out state);
+            if (_mementoServices.TryGetValue(t, out var mementoService) &&
+                mementoService is IMementoService<T> service)
+            {
+                return service.TryUndo(out state);
+            }
+            
+            state = default;
+            return false;
+        }
+
+        public static T Redo<T>()
+        {
+            CheckServiceLevel();
+            var t = typeof(T);
+            if (_mementoServices.TryGetValue(t, out var mementoService) && mementoService is IMementoService<T> service) 
+                return service.Redo();
+            
+            throw new Exception($"No recovered Memento state for type {typeof(T).Name}. Please check UndoCount before Undo, or use TryUndo method.");
         }
         
         public static bool TryRedo<T>(out T state)
         {
             CheckServiceLevel();
-            state = default;
             var t = typeof(T);
-            if (!_mementoServices.TryGetValue(t, out var mementoService)) return false;
-            return mementoService is IMementoService<T> service && service.TryRedo(out state);
+            if (_mementoServices.TryGetValue(t, out var mementoService) &&
+                mementoService is IMementoService<T> service)
+            {
+                return service.TryRedo(out state);
+            }
+            
+            state = default;
+            return false;
         }
         
         public static void ClearHistory<T>()
