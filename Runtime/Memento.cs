@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AceLand.MementoService.Core;
+using AceLand.MementoService.Global;
 using AceLand.MementoService.ProjectSetting;
 using UnityEngine;
 
@@ -25,7 +26,7 @@ namespace AceLand.MementoService
             
             if (Settings.MementoServiceMode is MementoServiceMode.LocalOnly) return;
 
-            _mementoServices = new Dictionary<Type, IMementoService>();
+            _service = GlobalMementoService.Build();
             Debug.Log($"Memento Background Service is Ready");
         }
 

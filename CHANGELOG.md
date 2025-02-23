@@ -4,13 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-- [Global] adding object-specific Service, and extension methods.
-
 ---
 
 ## [1.0.5] - 2025-02-23
 ### Modified
 - change dependencies - Deep Clone supports Unity data type.
+- [Global Service] save customized global memento states
 
 ## [1.0.4] - 2025-02-16
 ### Modified
