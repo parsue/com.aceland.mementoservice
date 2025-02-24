@@ -6,13 +6,17 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.7] - 2025-02-24
+### Modified
+- [Global Service] separate OnStateChanged to OnStateUndo and OnStateRedo
+
 ## [1.0.6] - 2025-02-23
 ### Modified
 - [Global Service] save customized global memento states
 
 ## [1.0.5] - 2025-02-23
 ### Modified
-- change dependencies - Deep Clone supports Unity data type.
+- change dependencies - Deep Clone supports Unity data type
 
 ## [1.0.4] - 2025-02-16
 ### Modified

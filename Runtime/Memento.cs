@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using AceLand.MementoService.Core;
-using AceLand.MementoService.Global;
+﻿using AceLand.MementoService.Global;
 using AceLand.MementoService.ProjectSetting;
 using UnityEngine;
 

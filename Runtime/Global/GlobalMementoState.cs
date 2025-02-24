@@ -11,10 +11,16 @@ namespace AceLand.MementoService.Global
             // update the data here
         }
 
-        public virtual void OnStateChanged()
+        public virtual void OnStateUndo()
         {
-            // called after state undo / redo
-            // update objects with new data here
+            // called before state undo
+            // update objects with old state here
+        }
+
+        public virtual void OnStateRedo()
+        {
+            // called after state redo
+            // update objects with new state here
         }
     }
 }
