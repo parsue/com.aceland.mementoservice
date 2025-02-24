@@ -5,22 +5,34 @@ namespace AceLand.MementoService.Global
     [Serializable]
     public abstract class GlobalMementoState
     {
-        public virtual void OnBeforeSave()
+        public virtual void OnBeforeStateSave()
         {
             // called before saving the state
-            // update the data here
+            // update the state here
         }
 
-        public virtual void OnStateUndo()
+        public virtual void OnStateBeforeUndo()
         {
             // called before state undo
-            // update objects with old state here
+            // Do stuff with current state
         }
 
-        public virtual void OnStateRedo()
+        public virtual void OnStateAfterUndo()
+        {
+            // called after state undo
+            // Do stuff with undo state
+        }
+        
+        public virtual void OnStateBeforeRedo()
+        {
+            // called before state redo
+            // Do stuff with current state
+        }
+        
+        public virtual void OnStateAfterRedo()
         {
             // called after state redo
-            // update objects with new state here
+            // Do stuff with redo state
         }
     }
 }

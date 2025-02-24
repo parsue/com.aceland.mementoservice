@@ -20,7 +20,7 @@
             if (UndoCount == 0 && RedoCount == 0)
                 globalMemento.SaveState(state);
             
-            state.OnBeforeSave();
+            state.OnBeforeStateSave();
             globalMemento.SaveState(state);
             _currentState = state;
         }
@@ -28,16 +28,18 @@
         internal void Undo()
         {
             if (globalMemento.UndoCount == 0) return;
-            _currentState?.OnStateUndo();
+            _currentState?.OnStateBeforeUndo();
             var state = globalMemento.Undo();
+            state?.OnStateAfterUndo();
             _currentState = state;
         }
 
         internal void Redo()
         {
             if (globalMemento.RedoCount == 0) return;
+            _currentState?.OnStateBeforeRedo();
             var state = globalMemento.Redo();
-            state?.OnStateRedo();
+            state?.OnStateAfterRedo();
             _currentState = state;
         }
 
