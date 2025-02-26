@@ -34,8 +34,7 @@ namespace AceLand.MementoService.Core
         
         public MementoState<T> Undo()
         {
-            if (_undoStack.Count <= 1)
-                return null;
+            if (_undoStack.Count <= 0) return null;
 
             var currentState = _undoStack.Pop();
             _redoStack.Push(currentState);
@@ -45,8 +44,7 @@ namespace AceLand.MementoService.Core
 
         public MementoState<T> Redo()
         {
-            if (_redoStack.Count == 0)
-                return null;
+            if (_redoStack.Count == 0) return null;
 
             var mementoState = _redoStack.Pop();
             _undoStack.Push(mementoState);

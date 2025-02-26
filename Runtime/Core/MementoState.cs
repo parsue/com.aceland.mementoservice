@@ -7,10 +7,7 @@ namespace AceLand.MementoService.Core
     {
         private readonly T _state;
 
-        public MementoState(T state) =>
-            _state = state.DeepClone();
-
-        public T GetState() =>
-            _state.DeepClone();
+        public MementoState(T state) => _state = state.DeepClone();
+        public T GetState() => _state.DeepClone();
     }
 }

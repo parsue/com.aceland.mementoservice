@@ -36,9 +36,12 @@ namespace AceLand.MementoService
         
         public bool TryUndo(out T state)
         {
-            state = default;
             var mementoState = _caretaker.Undo();
-            if (mementoState == null) return false;
+            if (mementoState == null)
+            {
+                state = default;
+                return false;
+            }
 
             _originator.RestoreFromMemento(mementoState);
             state = _originator.GetState();
@@ -60,9 +63,12 @@ namespace AceLand.MementoService
         
         public bool TryRedo(out T state)
         {
-            state = default;
             var mementoState = _caretaker.Redo();
-            if (mementoState == null) return false;
+            if (mementoState == null)
+            {
+                state = default;
+                return false;
+            }
 
             _originator.RestoreFromMemento(mementoState);
             state = _originator.GetState();
