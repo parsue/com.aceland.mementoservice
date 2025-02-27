@@ -1,9 +1,6 @@
-﻿using System;
-
-namespace AceLand.MementoService.Global
+﻿namespace AceLand.MementoService.Global
 {
-    [Serializable]
-    public abstract class GlobalMementoState
+    public abstract class GlobalMementoState : MementoState
     {
         public virtual void OnBeforeStateSave()
         {

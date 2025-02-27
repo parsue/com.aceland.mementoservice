@@ -6,10 +6,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.10] - 2025-02-27
+### Modified
+- work with MementoState and GlobalMementoState
+- default Clone method is System.Object.MemberwiseClone()
+### Fixed
+- Unity Object is not supporting issue 
+
 ## [1.0.9] - 2025-02-26
 ### Fixed
 - [Local Service] Caretaker not undo first memento state
-
 ### Modified
 - [Local Service] Improved Caretaker TryUndo and TryRedo code.
 

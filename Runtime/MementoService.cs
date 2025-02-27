@@ -6,6 +6,7 @@ using UnityEngine;
 namespace AceLand.MementoService
 {
     public partial class MementoService<T> : IMementoService<T>
+        where T : IMementoState
     {
         private static AceLandMementoSettings Settings => Memento.Settings; 
         

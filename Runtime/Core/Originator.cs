@@ -3,6 +3,7 @@
 namespace AceLand.MementoService.Core
 {
     internal class Originator<T> : DisposableObject
+        where T : IMementoState
     {
         private T _state;
 
@@ -16,14 +17,14 @@ namespace AceLand.MementoService.Core
             return _state;
         }
 
-        public MementoState<T> SaveToMemento()
+        public InternalMementoState<T> SaveToMemento()
         {
-            return new MementoState<T>(_state);
+            return new InternalMementoState<T>(_state);
         }
 
-        public void RestoreFromMemento(MementoState<T> memento)
+        public void RestoreFromMemento(InternalMementoState<T> internalMemento)
         {
-            _state = memento.GetState();
+            _state = internalMemento.GetState();
         }
     }
 }

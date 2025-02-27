@@ -6,12 +6,13 @@ using UnityEngine;
 namespace AceLand.MementoService.Core
 {
     internal class Caretaker<T> : DisposableObject
+        where T : IMementoState
     {
         public Caretaker(int historyLimit) =>
             this.historyLimit = historyLimit; 
         
-        private Stack<MementoState<T>> _undoStack = new();
-        private readonly Stack<MementoState<T>> _redoStack = new();
+        private Stack<InternalMementoState<T>> _undoStack = new();
+        private readonly Stack<InternalMementoState<T>> _redoStack = new();
         private readonly int historyLimit;
         
         public int UndoCount => Mathf.Max(_undoStack.Count - 1, 0);
@@ -22,17 +23,17 @@ namespace AceLand.MementoService.Core
             ClearHistory();
         }
 
-        public void AddMementoState(MementoState<T> memento)
+        public void AddMementoState(InternalMementoState<T> internalMemento)
         {
-            _undoStack.Push(memento);
+            _undoStack.Push(internalMemento);
             _redoStack.Clear();
 
             if (_undoStack.Count <= historyLimit) return;
             
-            _undoStack = new Stack<MementoState<T>>(_undoStack.Reverse().Skip(1));
+            _undoStack = new Stack<InternalMementoState<T>>(_undoStack.Reverse().Skip(1));
         }
         
-        public MementoState<T> Undo()
+        public InternalMementoState<T> Undo()
         {
             if (_undoStack.Count <= 0) return null;
 
@@ -42,7 +43,7 @@ namespace AceLand.MementoService.Core
             return _undoStack.Peek();
         }
 
-        public MementoState<T> Redo()
+        public InternalMementoState<T> Redo()
         {
             if (_redoStack.Count == 0) return null;
 

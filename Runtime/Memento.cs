@@ -27,10 +27,10 @@ namespace AceLand.MementoService
             Debug.Log($"Memento Background Service is Ready");
         }
 
-        public static MementoService<T> BuildLocalService<T>() =>
+        public static MementoService<T> BuildLocalService<T>() where T : IMementoState =>
             MementoService<T>.Build();
 
-        public static MementoService<T> BuildLocalService<T>(int historyLimit) =>
+        public static MementoService<T> BuildLocalService<T>(int historyLimit) where T : IMementoState =>
             MementoService<T>.Build(historyLimit);
     }
 }
