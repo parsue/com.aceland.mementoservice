@@ -13,7 +13,5 @@
         void SaveState(T state);
         T Undo();
         T Redo();
-        bool TryUndo(out T state);
-        bool TryRedo(out T state);
     }
 }

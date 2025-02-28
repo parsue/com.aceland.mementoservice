@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.0.11] - 2025-02-28
+### Modified
+- removed TryUndo() and TryRedo()
+### Fixed
+- service history limit is one less than setting
+
 ## [1.0.10] - 2025-02-27
 ### Modified
 - work with MementoState and GlobalMementoState

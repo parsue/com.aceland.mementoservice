@@ -15,7 +15,7 @@ namespace AceLand.MementoService
 
         public int UndoCount => _caretaker.UndoCount;
         public int RedoCount => _caretaker.RedoCount;
-
+        
         public void SaveState(T state)
         {
             _originator.SetState(state);
@@ -34,22 +34,6 @@ namespace AceLand.MementoService
             if (Settings.IsLogLevel) Debug.Log($"Undo Memento State : {typeof(T).Name}");
             return _originator.GetState();
         }
-        
-        public bool TryUndo(out T state)
-        {
-            var mementoState = _caretaker.Undo();
-            if (mementoState == null)
-            {
-                state = default;
-                return false;
-            }
-
-            _originator.RestoreFromMemento(mementoState);
-            state = _originator.GetState();
-            
-            if (Settings.IsLogLevel) Debug.Log($"Undo Memento State : {typeof(T).Name}");
-            return true;
-        }
 
         public T Redo()
         {
@@ -60,22 +44,6 @@ namespace AceLand.MementoService
             _originator.RestoreFromMemento(mementoState);
             if (Settings.IsLogLevel) Debug.Log($"Redo Memento State : {typeof(T).Name}");
             return _originator.GetState();
-        }
-        
-        public bool TryRedo(out T state)
-        {
-            var mementoState = _caretaker.Redo();
-            if (mementoState == null)
-            {
-                state = default;
-                return false;
-            }
-
-            _originator.RestoreFromMemento(mementoState);
-            state = _originator.GetState();
-            
-            if (Settings.IsLogLevel) Debug.Log($"Redo Memento State : {typeof(T).Name}");
-            return true;
         }
         
         public void ClearHistory()
